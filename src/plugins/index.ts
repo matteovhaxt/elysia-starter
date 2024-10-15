@@ -2,6 +2,7 @@ import { Elysia, t } from "elysia";
 import { swagger } from '@elysiajs/swagger'
 import { jwt } from '@elysiajs/jwt'
 import { bearer } from '@elysiajs/bearer'
+import { cors } from '@elysiajs/cors'
 
 const swaggerPlugin = () => new Elysia().use(swagger({
     path: '/docs',
@@ -16,7 +17,11 @@ const jwtPlugin = new Elysia().use(jwt({
     }),
 }))
 
-const plugins = new Elysia().use(swaggerPlugin).use(jwtPlugin).use(bearer());
+const corsPlugin = new Elysia().use(cors({
+    origin: '*',
+}))
+
+const plugins = new Elysia().use(swaggerPlugin).use(jwtPlugin).use(bearer()).use(corsPlugin);
 
 export type App = typeof plugins;
 
