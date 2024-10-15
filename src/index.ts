@@ -1,7 +1,8 @@
 import { Elysia } from "elysia";
 import plugins from "./plugins";
+import api from "./routes";
 
-const app = new Elysia().use(plugins).get("/", () => "Hello Elysia").listen(3000);
+const app = new Elysia().use(plugins).use(api).listen(3000);
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
