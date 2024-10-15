@@ -3,6 +3,7 @@ import { swagger } from '@elysiajs/swagger'
 import { jwt } from '@elysiajs/jwt'
 import { bearer } from '@elysiajs/bearer'
 import { cors } from '@elysiajs/cors'
+import logger from "@/lib/logger";
 
 const swaggerPlugin = () => new Elysia().use(swagger({
     path: '/docs',
@@ -21,7 +22,9 @@ const corsPlugin = new Elysia().use(cors({
     origin: '*',
 }))
 
-const plugins = new Elysia().use(swaggerPlugin).use(jwtPlugin).use(bearer()).use(corsPlugin);
+const loggerPlugin = new Elysia().decorate('logger', logger)
+
+const plugins = new Elysia().use(swaggerPlugin).use(jwtPlugin).use(bearer()).use(corsPlugin).use(loggerPlugin);
 
 export type App = typeof plugins;
 
