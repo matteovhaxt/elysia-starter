@@ -1,29 +1,29 @@
 {
-  "name": "elysia-starter",
-  "version": "1.0.50",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
-    "format": "prettier --write ."
-  },
-  "dependencies": {
-    "@elysiajs/bearer": "^1.1.2",
-    "@elysiajs/cors": "^1.1.1",
-    "@elysiajs/jwt": "^1.1.1",
-    "@elysiajs/swagger": "^1.1.5",
-    "elysia": "latest",
-    "pino": "^9.5.0",
-    "pino-pretty": "^11.3.0"
-  },
-  "devDependencies": {
-    "bun-types": "latest",
-    "prettier": "3.3.3"
-  },
-  "module": "src/index.js",
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 4,
-    "semi": false,
-    "singleQuote": true
-  }
+    "name": "elysia-starter",
+    "version": "1.0.50",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "bun run --watch src/index.ts",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "@elysiajs/bearer": "^1.1.2",
+        "@elysiajs/cors": "^1.1.1",
+        "@elysiajs/jwt": "^1.1.1",
+        "@elysiajs/swagger": "^1.1.5",
+        "elysia": "latest",
+        "pino": "^9.5.0",
+        "pino-pretty": "^11.3.0"
+    },
+    "devDependencies": {
+        "bun-types": "latest",
+        "prettier": "3.3.3"
+    },
+    "module": "src/index.js",
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true
+    }
 }
