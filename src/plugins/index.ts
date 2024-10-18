@@ -1,4 +1,4 @@
-import { Elysia, t } from 'elysia'
+import { Elysia, Static, t } from 'elysia'
 import { swagger } from '@elysiajs/swagger'
 import { jwt } from '@elysiajs/jwt'
 import { bearer } from '@elysiajs/bearer'
@@ -31,14 +31,16 @@ const swaggerPlugin = () =>
         })
     )
 
-const jwtPlugin = new Elysia().use(
+const jwtPayload = t.Object({
+    id: t.String(),
+    createdAt: t.Date(),
+})
+
+const jwtPlugin = new Elysia().use(bearer()).use(
     jwt({
         name: 'jwt',
         secret: Bun.env.JWT_SECRET ?? 'secret',
-        schema: t.Object({
-            id: t.String(),
-            createdAt: t.Date(),
-        }),
+        schema: jwtPayload,
     })
 )
 
@@ -50,12 +52,15 @@ const corsPlugin = new Elysia().use(
 
 const loggerPlugin = new Elysia().decorate('logger', logger)
 
-const storePlugin = new Elysia().state({ token: '' })
+type Store = {
+    token: Static<typeof jwtPayload> | null
+}
+
+const storePlugin = new Elysia().state<Store>({ token: null })
 
 const plugins = new Elysia()
     .use(swaggerPlugin)
     .use(jwtPlugin)
-    .use(bearer())
     .use(corsPlugin)
     .use(loggerPlugin)
     .use(storePlugin)
