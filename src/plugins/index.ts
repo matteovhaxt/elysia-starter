@@ -50,12 +50,15 @@ const corsPlugin = new Elysia().use(
 
 const loggerPlugin = new Elysia().decorate('logger', logger)
 
+const storePlugin = new Elysia().state({ token: '' })
+
 const plugins = new Elysia()
     .use(swaggerPlugin)
     .use(jwtPlugin)
     .use(bearer())
     .use(corsPlugin)
     .use(loggerPlugin)
+    .use(storePlugin)
 
 export type App = typeof plugins
 

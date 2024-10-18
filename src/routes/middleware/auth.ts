@@ -3,7 +3,7 @@ import type { App } from '@/plugins'
 const whitelist = ['/api/token']
 
 const auth = (app: App) =>
-    app.onBeforeHandle(async ({ path, jwt, bearer, logger }) => {
+    app.onBeforeHandle(async ({ path, jwt, bearer, logger, store }) => {
         logger.debug(path)
         if (whitelist.some((route) => path.startsWith(route))) {
             return
@@ -20,6 +20,7 @@ const auth = (app: App) =>
                 message: 'Invalid token',
             }
         }
+        store.token = bearer
     })
 
 export default auth
