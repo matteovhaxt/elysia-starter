@@ -25,6 +25,11 @@ const route = (app: App) =>
             params: t.Object({
                 id: t.String(),
             }),
+            detail: {
+                tags: ['utils'],
+                description: 'Get a token',
+                operationId: 'getToken',
+            },
         }
     )
 

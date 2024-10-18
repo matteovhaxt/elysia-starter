@@ -9,6 +9,25 @@ const swaggerPlugin = () =>
     new Elysia().use(
         swagger({
             path: '/docs',
+            documentation: {
+                info: {
+                    title: 'API Documentation',
+                    version: '1.0.0',
+                    description: 'Documentation for the project',
+                },
+                servers: [
+                    {
+                        url: 'http://localhost:3000',
+                        description: 'Local server',
+                    },
+                ],
+                tags: [
+                    {
+                        name: 'utils',
+                        description: 'Utility routes'
+                    },
+                ],
+            },
         })
     )
 
